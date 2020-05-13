@@ -12,7 +12,7 @@ keyword.addEventListener('keyup', function() {
 	
 	// cek kesiapan ajax
 	xhr.onreadystatechange = function() {
-		if(xhr.readyState == 4 && xhr.statur == 200) {
+		if(xhr.readyState == 4 && xhr.status == 200) {
 			container.innerHTML = xhr.responseText;
 		}
 	}
