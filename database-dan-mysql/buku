@@ -1,0 +1,141 @@
+
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (6.827 sec)
+
+MariaDB [(none)]> create database phpdasar;
+Query OK, 1 row affected (0.442 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpdasar           |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.091 sec)
+
+MariaDB [(none)]> use phpdasar;
+Database changed
+MariaDB [phpdasar]> create table buku (id int primary key auto_increment, judul varchar(100), penulis varchar(50), tebal varchar(30), isbn varchar(20));
+Query OK, 0 rows affected (0.694 sec)
+
+MariaDB [phpdasar]> show tables;
++--------------------+
+| Tables_in_phpdasar |
++--------------------+
+| buku               |
++--------------------+
+1 row in set (0.036 sec)
+
+MariaDB [phpdasar]> describe buku;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| judul   | varchar(100) | YES  |     | NULL    |                |
+| penulis | varchar(50)  | YES  |     | NULL    |                |
+| tebal   | varchar(30)  | YES  |     | NULL    |                |
+| isbn    | varchar(20)  | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+5 rows in set (0.809 sec)
+
+MariaDB [phpdasar]> insert into buku values('','Bumi Manusia','Pramoedya Ananta Toer','535 halaman','979-97312-3-2');
+Query OK, 1 row affected, 1 warning (0.403 sec)
+
+MariaDB [phpdasar]> insert into buku values('',"The Cuckoo's Calling",'Robert Galbraith','520 halaman','978-602-03-00062-7');
+Query OK, 1 row affected, 1 warning (0.140 sec)
+
+MariaDB [phpdasar]> select * from buku;
++----+----------------------+-----------------------+-------------+--------------------+
+| id | judul                | penulis               | tebal       | isbn               |
++----+----------------------+-----------------------+-------------+--------------------+
+|  1 | Bumi Manusia         | Pramoedya Ananta Toer | 535 halaman | 979-97312-3-2      |
+|  2 | The Cuckoo's Calling | Robert Galbraith      | 520 halaman | 978-602-03-00062-7 |
++----+----------------------+-----------------------+-------------+--------------------+
+2 rows in set (0.104 sec)
+
+MariaDB [phpdasar]> select * from buku where judul = 'Bumi Manusia';
++----+--------------+-----------------------+-------------+---------------+
+| id | judul        | penulis               | tebal       | isbn          |
++----+--------------+-----------------------+-------------+---------------+
+|  1 | Bumi Manusia | Pramoedya Ananta Toer | 535 halaman | 979-97312-3-2 |
++----+--------------+-----------------------+-------------+---------------+
+1 row in set (0.109 sec)
+
+MariaDB [phpdasar]> insert into buku values('','Laskar Pelangi','Andrea Hirata','100 halaman','979-3062-79-7');
+Query OK, 1 row affected, 1 warning (0.107 sec)
+
+MariaDB [phpdasar]> select * from buku;
++----+----------------------+-----------------------+-------------+--------------------+
+| id | judul                | penulis               | tebal       | isbn               |
++----+----------------------+-----------------------+-------------+--------------------+
+|  1 | Bumi Manusia         | Pramoedya Ananta Toer | 535 halaman | 979-97312-3-2      |
+|  2 | The Cuckoo's Calling | Robert Galbraith      | 520 halaman | 978-602-03-00062-7 |
+|  3 | Laskar Pelangi       | Andrea Hirata         | 100 halaman | 979-3062-79-7      |
++----+----------------------+-----------------------+-------------+--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [phpdasar]> update buku set tebal = '534 halaman' where id=3;
+Query OK, 1 row affected (0.215 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [phpdasar]> select * from buku;
++----+----------------------+-----------------------+-------------+--------------------+
+| id | judul                | penulis               | tebal       | isbn               |
++----+----------------------+-----------------------+-------------+--------------------+
+|  1 | Bumi Manusia         | Pramoedya Ananta Toer | 535 halaman | 979-97312-3-2      |
+|  2 | The Cuckoo's Calling | Robert Galbraith      | 520 halaman | 978-602-03-00062-7 |
+|  3 | Laskar Pelangi       | Andrea Hirata         | 534 halaman | 979-3062-79-7      |
++----+----------------------+-----------------------+-------------+--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [phpdasar]> delete from buku where id=3;
+Query OK, 1 row affected (0.173 sec)
+
+MariaDB [phpdasar]> select * from buku;
++----+----------------------+-----------------------+-------------+--------------------+
+| id | judul                | penulis               | tebal       | isbn               |
++----+----------------------+-----------------------+-------------+--------------------+
+|  1 | Bumi Manusia         | Pramoedya Ananta Toer | 535 halaman | 979-97312-3-2      |
+|  2 | The Cuckoo's Calling | Robert Galbraith      | 520 halaman | 978-602-03-00062-7 |
++----+----------------------+-----------------------+-------------+--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [phpdasar]> drop table buku;
+Query OK, 0 rows affected (0.189 sec)
+
+MariaDB [phpdasar]> select * from buku;
+ERROR 1146 (42S02): Table 'phpdasar.buku' doesn't exist
+MariaDB [phpdasar]> show tables;
+Empty set (0.002 sec)
+
+MariaDB [phpdasar]> drop database phpdasar;
+Query OK, 0 rows affected (0.333 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.003 sec)
+
+MariaDB [(none)]>
