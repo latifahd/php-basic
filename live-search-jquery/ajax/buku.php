@@ -1,5 +1,7 @@
 <?php
+sleep(1);
 require '../functions.php';
+
 $keyword = $_GET["keyword"];
 $query = "SELECT * FROM buku
 			WHERE 
@@ -7,6 +9,7 @@ $query = "SELECT * FROM buku
 		  penulis LIKE '%$keyword%' OR
 		  isbn LIKE '%$keyword%'
 		";
+
 $buku = query($query);
 ?>
 
@@ -29,7 +32,7 @@ $buku = query($query);
 				<a href="ubah.php?id=<?= $row["id"]; ?>">ubah</a> |
 				<a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?');">hapus</a>
 			</td>
-			<td><img src="img/<?= $row["gambar"] ?>" width="50"></td>
+			<td><img src="imf/<?= $row["gambar"] ?>" width="50"></td>
 			<td><?= $row["judul"]; ?></td>
 			<td><?= $row["penulis"]; ?></td>
 			<td><?= $row["tebal"]; ?></td>
